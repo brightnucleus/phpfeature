@@ -1,0 +1,13 @@
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/4.8/phpunit.xsd"
+         bootstrap="vendor/autoload.php"
+         colors="true">
+    <testsuites>
+        <testsuite name="version">
+            <file>tests/SemanticVersionTest.php</file>
+        </testsuite>
+        <testsuite name="features">
+            <file>tests/PHPFeatureTest.php</file>
+        </testsuite>
+    </testsuites>
+</phpunit>
