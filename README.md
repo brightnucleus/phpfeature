@@ -23,8 +23,6 @@ if ( ! $php->is_supported( $features ) ) {
 
 * The list of features is not yet exhaustive. There should also be some guidelines to know how these are named.
 
-* The library should provide a function that returns the minimum version that supports all the requested features.
-
 * The algorithm behind `get_minimum_required()` is still missing, it only fetches bare version. For a requirement like '>5.4.2', this will return incorrect values.
 
 * The required PHP version to use the library is currently at v5.3.2, because of Composer. This should be lowered to 5.2 at least, so that WordPress projects can reliably use the library.
