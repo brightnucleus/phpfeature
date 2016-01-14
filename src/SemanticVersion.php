@@ -232,4 +232,15 @@ class SemanticVersion {
 	protected function set_component( $level, $version ) {
 		$this->components[ $level ] = $version;
 	}
+
+	/**
+	 * Get a string representation of the object.
+	 *
+	 * @since 0.2.0
+	 *
+	 * @return string
+	 */
+	public function __toString() {
+		return (string) $this->get_version();
+	}
 }

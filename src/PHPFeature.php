@@ -121,15 +121,58 @@ class PHPFeature implements FeatureInterface {
 	}
 
 	/**
+	 * Get the minimum required version that supports all of the requested
+	 * features.
+	 *
+	 * Accepts either a string or an array of strings. Returns a
+	 * SemanticVersion object for the version number that is known to support
+	 * all the passed-in features, or false if at least one of
+	 * them is not supported by any known version.
+	 *
+	 * @since 0.2.0
+	 *
+	 * @param string|array $features    What features to check the support of.
+	 * @return SemanticVersion|bool
+	 * @throws InvalidArgumentException If the wrong type of argument is passed
+	 *                                  in.
+	 * @throws RuntimeException         If a requirement could not be parsed.
+	 */
+	public function get_minimum_required( $features ) {
+
+		if ( is_string( $features ) ) {
+			$features = array( $features );
+		}
+
+		if ( ! is_array( $features ) ) {
+			throw new InvalidArgumentException( sprintf(
+				'Wrong type of argument passed in to get_minimum_required(): "%1$s".',
+				gettype( $features )
+			) );
+		}
+
+		$minimum_required = '0.0.0';
+		$is_supported     = true;
+
+		while ( count( $features ) > 0 ) {
+			$feature = array_pop( $features );
+			$is_supported &= (bool) $this->check_support( $feature, $minimum_required );
+		}
+
+		return $minimum_required !== '0.0.0' ? new SemanticVersion( $minimum_required, true ) : false;
+	}
+
+	/**
 	 * Check whether a single feature is supported.
 	 *
 	 * @since 0.1.0
 	 *
-	 * @param string $feature The feature to check.
+	 * @param string $feature          The feature to check.
+	 * @param string $minimum_required Optional. Minimum required version that
+	 *                                 supports all features.
 	 * @return bool
 	 * @throws RuntimeException If the requirement could not be parsed.
 	 */
-	protected function check_support( $feature ) {
+	protected function check_support( $feature, &$minimum_required = null ) {
 
 		if ( ! $this->config->has_key( $feature ) ) {
 			return false;
@@ -143,9 +186,9 @@ class PHPFeature implements FeatureInterface {
 
 		$is_supported = true;
 
-		while ( $is_supported && count( $requirements ) > 0 ) {
+		while ( ( $is_supported || $minimum_required ) && count( $requirements ) > 0 ) {
 			$requirement = array_pop( $requirements );
-			$is_supported &= (bool) $this->check_requirement( $requirement );
+			$is_supported &= (bool) $this->check_requirement( $requirement, $minimum_required );
 		}
 
 		return (bool) $is_supported;
@@ -156,13 +199,14 @@ class PHPFeature implements FeatureInterface {
 	 *
 	 * @since 0.1.0
 	 *
-	 * @param string $requirement A requirement that is composed of an operator
-	 *                            and a version milestone.
-	 *
+	 * @param string $requirement      A requirement that is composed of an
+	 *                                 operator and a version milestone.
+	 * @param string $minimum_required Optional. Minimum required version that
+	 *                                 supports all features.
 	 * @return bool
 	 * @throws RuntimeException If the requirement could not be parsed.
 	 */
-	protected function check_requirement( $requirement ) {
+	protected function check_requirement( $requirement, &$minimum_required = null ) {
 
 		$requirement = trim( $requirement );
 		$pattern     = self::COMPARISON_PATTERN;
@@ -180,6 +224,35 @@ class PHPFeature implements FeatureInterface {
 		$operator  = isset( $arguments[1] ) ? (string) $arguments[1] : '>=';
 		$milestone = isset( $arguments[2] ) ? (string) $arguments[2] : '0.0.0';
 
-		return (bool) version_compare( $this->version->get_version(), $milestone, $operator );
+		$is_supported = (bool) version_compare( $this->version->get_version(), $milestone, $operator );
+
+		if ( $minimum_required ) {
+			$required_version = $this->get_required_version( $milestone, $operator );
+			if ( version_compare( $required_version, $minimum_required, '>' ) ) {
+				$minimum_required = $required_version;
+			}
+		}
+
+		return $is_supported;
+	}
+
+	/**
+	 * Get the required version for a single requirement.
+	 *
+	 * @since 0.2.0
+	 *
+	 * @param string $milestone A version milestone that is used to define the
+	 *                          requirement.
+	 * @param string $operator  An operator that gets applied to the milestone.
+	 *                          Possible values: '<=', 'lt', '<', 'le', '>=',
+	 *                          'gt', '>', 'ge', '=', '==', 'eq', '!=', '<>',
+	 *                          'ne'
+	 * @return string
+	 */
+	protected function get_required_version( $milestone, $operator ) {
+
+		// TODO: Algorithm is still missing, the `$operator` is simply ignored
+		// and the pure `$milestone` is returned.
+		return $milestone;
 	}
 }

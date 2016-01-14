@@ -31,4 +31,20 @@ interface FeatureInterface {
 	 * @return bool
 	 */
 	public function is_supported( $features );
+
+	/**
+	 * Get the minimum required version that supports all of the requested
+	 * features.
+	 *
+	 * Accepts either a string or an array of strings. Returns a
+	 * SemanticVersion object for the version number that is known to support
+	 * all the passed-in features, or false if at least one of
+	 * them is not supported by any known version.
+	 *
+	 * @since 0.2.0
+	 *
+	 * @param string|array $features What features to check the support of.
+	 * @return SemanticVersion|bool
+	 */
+	public function get_minimum_required( $features );
 }
