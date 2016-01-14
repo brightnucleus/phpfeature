@@ -2,18 +2,51 @@
 
 PHPFeature is a first draft of a PHP Feature Detection Library similar to what Modernizr does for the browser features. So, instead of checking for a specific PHP version number (which forces you to know which and compare which features were introduced by which versions), you can simply tell the library what features you need, and it will tell you with a simple boolean value whether these are supported or not.
 
+You can read more background information here: http://www.alainschlesser.com/php-feature/
+
 ## Basic Usage
 
+To include the library in your project, you can use Composer:
+
+```BASH
+composer require brightnucleus/phpfeature
+```
+
+Alternatively, you can copy the classes inside of your application and make sure that your application can find them.
+
+Usage is pretty simple, it only comes with two methods so far.
+
 ```PHP
+public function is_supported( $features );
+```
+
+This returns a boolean value telling you whether all of the features that you passed in are supported by the current PHP version.
+
+```PHP
+public function get_minimum_required( $features );
+```
+
+This returns a SemanticVersion object that contains the minimum PHP version that supports all of the features that you passed in.
+
+Here’s an example of how to use it to stop execution and inform the user:
+
+```PHP
+// Array of strings to define what features you need.
 $features = array( 'namespaces', 'traits' );
 
+// Instantiate the PHPFeature library.
+// When you don't provide a version number as the first argument,
+// the version of the currently used PHP interpreter is fetched.
 $php = new PHPFeature();
 
+// Check whether all of the features are supported. If not...
 if ( ! $php->is_supported( $features ) ) {
-	throw new RuntimeException( sprintf(
-		'Your PHP interpreter does not support some features needed to run this application. Please upgrade to version %1$s or newer.',
-		$php->get_minimum_required( $features )
-	) );
+
+    // ... throw exception and let user know the minimum needed.
+    throw new RuntimeException( sprintf(
+        'Your PHP interpreter does not support some features needed to run this application. Please upgrade to version %1$s or newer.',
+        $php->get_minimum_required( $features )
+    ) );
 }
 ```
 
