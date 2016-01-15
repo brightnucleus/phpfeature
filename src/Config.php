@@ -1,6 +1,6 @@
 <?php
 /**
- * ConfigInterface Interface.
+ * Config Class.
  *
  * @package   phpfeature
  * @author    Alain Schlesser <alain.schlesser@gmail.com>
