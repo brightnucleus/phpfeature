@@ -101,7 +101,7 @@ class SemanticVersionTest extends PHPUnit_Framework_TestCase
     public function testExceptions($version, $partial)
     {
         $this->setExpectedException('RuntimeException');
-        $semver = new SemanticVersion($version, $partial);
+        new SemanticVersion($version, $partial);
     }
 
     /**
