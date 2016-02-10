@@ -204,10 +204,10 @@ class PHPFeature implements FeatureInterface
      *
      * @since 0.1.0
      *
-     * @param string $requirement     A requirement that is composed of an
-     *                                operator and a version milestone.
-     * @param string $minimumRequired Optional. Minimum required version that
-     *                                supports all features.
+     * @param string      $requirement     A requirement that is composed of an
+     *                                     operator and a version milestone.
+     * @param string|null $minimumRequired Optional. Minimum required version that
+     *                                     supports all features.
      * @return bool
      * @throws RuntimeException If the requirement could not be parsed.
      */
