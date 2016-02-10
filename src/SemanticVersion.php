@@ -195,7 +195,8 @@ class SemanticVersion
      *
      * @since 0.1.0
      *
-     * @return int The patch version that is used. '' if not defined.
+     * @return string The patch version that is used. Empty string if not
+     *                defined.
      */
     public function getPreRelease()
     {
