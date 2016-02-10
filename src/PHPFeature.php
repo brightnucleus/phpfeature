@@ -135,7 +135,7 @@ class PHPFeature implements FeatureInterface
      * @since 0.2.0
      *
      * @param string|array $features    What features to check the support of.
-     * @return SemanticVersion|bool
+     * @return SemanticVersion|false
      * @throws InvalidArgumentException If the wrong type of argument is passed
      *                                  in.
      * @throws RuntimeException         If a requirement could not be parsed.
