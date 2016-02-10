@@ -232,7 +232,7 @@ class PHPFeature implements FeatureInterface
 
         $isSupported = (bool)version_compare($this->version->getVersion(), $milestone, $operator);
 
-        if ($minimumRequired) {
+        if (null !== $minimumRequired) {
             $requiredVersion = $this->getRequiredVersion($milestone, $operator);
             if (version_compare($requiredVersion, $minimumRequired, '>')) {
                 $minimumRequired = $requiredVersion;
