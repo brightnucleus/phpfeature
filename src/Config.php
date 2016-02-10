@@ -16,71 +16,77 @@
  *
  * @author Alain Schlesser <alain.schlesser@gmail.com>
  */
-class Config extends ArrayObject implements ConfigInterface {
+class Config extends ArrayObject implements ConfigInterface
+{
 
-	/**
-	 * Instantiate the Config object.
-	 *
-	 * @since 0.1.0
-	 *
-	 * @param  array $config Array with settings.
-	 */
-	public function __construct( array $config ) {
-		// Make sure the config entries can be accessed as properties.
-		parent::__construct( $config, ArrayObject::ARRAY_AS_PROPS );
-	}
+    /**
+     * Instantiate the Config object.
+     *
+     * @since 0.1.0
+     *
+     * @param  array $config Array with settings.
+     */
+    public function __construct(array $config)
+    {
+        // Make sure the config entries can be accessed as properties.
+        parent::__construct($config, ArrayObject::ARRAY_AS_PROPS);
+    }
 
-	/**
-	 * Magic method that enables the use of normal array_* functions on the
-	 * Config object.
-	 *
-	 * @since  0.1.0
-	 *
-	 * @param  string $function  The function that was called on this object.
-	 * @param  mixed  $arguments The arguments that were used for the function
-	 *                           call.
-	 * @return mixed
-	 * @throws BadMethodCallException
-	 */
-	public function __call( $function, $arguments ) {
-		if ( ! is_callable( $function ) || substr( $function, 0, 6 ) !== 'array_' ) {
-			throw new BadMethodCallException( __CLASS__ . '->' . $function );
-		}
+    /**
+     * Magic method that enables the use of normal array_* functions on the
+     * Config object.
+     *
+     * @since  0.1.0
+     *
+     * @param  string $function  The function that was called on this object.
+     * @param  mixed  $arguments The arguments that were used for the function
+     *                           call.
+     * @return mixed
+     * @throws BadMethodCallException
+     */
+    public function __call($function, $arguments)
+    {
+        if ( ! is_callable($function) || substr($function, 0, 6) !== 'array_') {
+            throw new BadMethodCallException(__CLASS__ . '->' . $function);
+        }
 
-		return call_user_func_array( $function, array_merge( array( $this->getArrayCopy() ), $arguments ) );
-	}
+        return call_user_func_array($function, array_merge(array($this->getArrayCopy()), $arguments));
+    }
 
-	/**
-	 * Check whether the Config has a specific key.
-	 *
-	 * @since 0.1.0
-	 *
-	 * @param string $key The key to check the existence for.
-	 * @return bool
-	 */
-	public function has_key( $key ) {
-		return array_key_exists( $key, (array) $this );
-	}
+    /**
+     * Check whether the Config has a specific key.
+     *
+     * @since 0.1.0
+     *
+     * @param string $key The key to check the existence for.
+     * @return bool
+     */
+    public function hasKey($key)
+    {
+        return array_key_exists($key, (array)$this);
+    }
 
-	/**
-	 * Get the value of a specific key.
-	 *
-	 * @since 0.1.0
-	 *
-	 * @param string $key The key to get the value for.
-	 * @return mixed
-	 */
-	public function get_key( $key ) {
-		return $this[ $key ];
-	}
+    /**
+     * Get the value of a specific key.
+     *
+     * @since 0.1.0
+     *
+     * @param string $key The key to get the value for.
+     * @return mixed
+     */
+    public function getKey($key)
+    {
+        return $this[$key];
+    }
 
-	/**
-	 * Get the an array with all the keys
-	 *
-	 * @since 0.1.0
-	 * @return mixed
-	 */
-	public function get_keys() {
-		return array_keys( (array) $this );
-	}
+    /**
+     * Get the an array with all the keys
+     *
+     * @since 0.1.0
+     * @return mixed
+     */
+    public function getKeys()
+    {
+        return array_keys((array)$this);
+    }
 }
