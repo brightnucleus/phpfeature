@@ -191,7 +191,7 @@ class PHPFeature implements FeatureInterface
 
         $isSupported = true;
 
-        while (($isSupported || $minimumRequired) && count($requirements) > 0) {
+        while (($isSupported || null !== $minimumRequired) && count($requirements) > 0) {
             $requirement = array_pop($requirements);
             $isSupported &= (bool)$this->checkRequirement($requirement, $minimumRequired);
         }
