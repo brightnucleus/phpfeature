@@ -170,9 +170,9 @@ class PHPFeature implements FeatureInterface
      *
      * @since 0.1.0
      *
-     * @param string $feature         The feature to check.
-     * @param string $minimumRequired Optional. Minimum required version that
-     *                                supports all features.
+     * @param string      $feature         The feature to check.
+     * @param string|null $minimumRequired Optional. Minimum required version that
+     *                                     supports all features.
      * @return bool
      * @throws RuntimeException If the requirement could not be parsed.
      */
