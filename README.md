@@ -1,5 +1,16 @@
 # PHPFeature
 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/brightnucleus/phpfeature/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/brightnucleus/phpfeature/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/brightnucleus/phpfeature/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/brightnucleus/phpfeature/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/brightnucleus/phpfeature/badges/build.png?b=master)](https://scrutinizer-ci.com/g/brightnucleus/phpfeature/build-status/master)
+[![Codacy Badge](https://api.codacy.com/project/badge/grade/2fbc26a45380443c804ef8de5ba07f33)](https://www.codacy.com/app/BrightNucleus/phpfeature)
+[![Code Climate](https://codeclimate.com/github/brightnucleus/phpfeature/badges/gpa.svg)](https://codeclimate.com/github/brightnucleus/phpfeature)
+
+[![Latest Stable Version](https://poser.pugx.org/brightnucleus/phpfeature/v/stable)](https://packagist.org/packages/brightnucleus/phpfeature)
+[![Total Downloads](https://poser.pugx.org/brightnucleus/phpfeature/downloads)](https://packagist.org/packages/brightnucleus/phpfeature)
+[![Latest Unstable Version](https://poser.pugx.org/brightnucleus/phpfeature/v/unstable)](https://packagist.org/packages/brightnucleus/phpfeature)
+[![License](https://poser.pugx.org/brightnucleus/phpfeature/license)](https://packagist.org/packages/brightnucleus/phpfeature)
+
 PHPFeature is a first draft of a PHP Feature Detection Library similar to what Modernizr does for the browser features. So, instead of checking for a specific PHP version number (which forces you to know which and compare which features were introduced by which versions), you can simply tell the library what features you need, and it will tell you with a simple boolean value whether these are supported or not.
 
 You can read more background information here: http://www.alainschlesser.com/php-feature/
