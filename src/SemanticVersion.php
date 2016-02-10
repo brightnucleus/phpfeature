@@ -62,7 +62,7 @@ class SemanticVersion
     public function __construct($version = null, $partial = false)
     {
 
-        if ( ! $version) {
+        if (null === $version) {
             $version = '0.0.0';
         }
 
