@@ -4,9 +4,48 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1eaaa51660c7ba0dcea9cd6ac3bdd4cf",
-    "content-hash": "628f44147df70951255d44a99c33201b",
+    "hash": "1b4577ce3a9be9d948b9a923e1e30bbd",
+    "content-hash": "3fdd67a8974b0538d2129ee400864d9c",
     "packages": [
+        {
+            "name": "brightnucleus/config-52",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/brightnucleus/config-52.git",
+                "reference": "cb2dea1f5e7dd9b6a19c5c90e13b0953d340c246"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/brightnucleus/config-52/zipball/cb2dea1f5e7dd9b6a19c5c90e13b0953d340c246",
+                "reference": "cb2dea1f5e7dd9b6a19c5c90e13b0953d340c246",
+                "shasum": ""
+            },
+            "require": {
+                "xrstf/composer-php52": "^1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alain Schlesser",
+                    "email": "alain.schlesser@gmail.com"
+                }
+            ],
+            "description": "Minimal, reusable Config component (without namespaces)",
+            "time": "2016-03-31 10:29:33"
+        },
         {
             "name": "xrstf/composer-php52",
             "version": "v1.0.19",

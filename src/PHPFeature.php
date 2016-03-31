@@ -9,8 +9,8 @@
  * @copyright 2016 Alain Schlesser, Bright Nucleus
  */
 
-use PHPFeature_Config as Config;
-use PHPFeature_ConfigInterface as ConfigInterface;
+use BrightNucleus_Config as Config;
+use BrightNucleus_ConfigInterface as ConfigInterface;
 use PHPFeature_SemanticVersion as SemanticVersion;
 
 /**
