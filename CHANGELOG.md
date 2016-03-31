@@ -5,9 +5,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [0.2.5] - 2016-03-31
 ### Added
 - Add `xrstf/composer-php52` to allow library to be used in PHP5.2 environments.
+- Add `brightnucleus/php-releases` to enable minimum version checks.
 
 ### Changed
+- Config package is pulled in as external dependency `brightnucleus/config-52`.
+- Classes were renamed to avoid namespace collisions.
+- Number of small tweaks to lower PHP requirements to 5.2+
+- Update `README.md`.
 - Change License to MIT.
+
+### Fixed
+- Number of small tweaks to address code quality and documentation issues.
 
 ## [0.2.4] - 2016-02-10
 ### Changed
