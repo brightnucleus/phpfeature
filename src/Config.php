@@ -41,6 +41,7 @@ class Config extends ArrayObject implements ConfigInterface
      * @param  string $function  The function that was called on this object.
      * @param  mixed  $arguments The arguments that were used for the function
      *                           call.
+     *
      * @return mixed
      * @throws BadMethodCallException
      */
@@ -59,6 +60,7 @@ class Config extends ArrayObject implements ConfigInterface
      * @since 0.1.0
      *
      * @param string $key The key to check the existence for.
+     *
      * @return bool
      */
     public function hasKey($key)
@@ -72,6 +74,7 @@ class Config extends ArrayObject implements ConfigInterface
      * @since 0.1.0
      *
      * @param string $key The key to get the value for.
+     *
      * @return mixed
      */
     public function getKey($key)
@@ -83,6 +86,7 @@ class Config extends ArrayObject implements ConfigInterface
      * Get the an array with all the keys
      *
      * @since 0.1.0
+     *
      * @return mixed
      */
     public function getKeys()

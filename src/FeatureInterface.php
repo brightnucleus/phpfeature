@@ -29,6 +29,7 @@ interface FeatureInterface
      * @since 0.1.0
      *
      * @param string|array $features What features to check the support of.
+     *
      * @return bool
      */
     public function isSupported($features);
@@ -45,6 +46,7 @@ interface FeatureInterface
      * @since 0.2.0
      *
      * @param string|array $features What features to check the support of.
+     *
      * @return SemanticVersion|bool
      */
     public function getMinimumRequired($features);

@@ -57,6 +57,7 @@ class SemanticVersion
      *                             version number. If true, the missing
      *                             components will default to `0` instead of
      *                             throwing an exception.
+     *
      * @throws RuntimeException When the version fails to validate.
      */
     public function __construct($version = null, $partial = false)
@@ -72,52 +73,6 @@ class SemanticVersion
     }
 
     /**
-     * Validate the version and assert it is in SemVer format.
-     *
-     * @since 0.1.0
-     *
-     * @param string $version The version to validate.
-     * @param bool   $partial Optional. Whether to accept a partial version
-     *                        number. If true, the missing components will
-     *                        default to `0` instead of throwing an exception.
-     * @return string
-     * @throws RuntimeException When the version fails to validate.
-     */
-    protected function validate($version, $partial = false)
-    {
-
-        $version = trim($version);
-        $pattern = self::VERSION_PATTERN;
-
-        $components = array();
-        $result     = preg_match($pattern, $version, $components);
-
-        if ( ! $result) {
-            throw new RuntimeException(sprintf(
-                'Failed to validate version "%1$s".',
-                (string)$version
-            ));
-        }
-
-        if ( ! $partial && ( ! isset($components[2]) || ! isset($components[3]))) {
-            throw new RuntimeException(sprintf(
-                'Could not accept partial version "%1$s", requested full versions only.',
-                (string)$version
-            ));
-        }
-
-        $this->setComponent('major', isset($components[1]) ? (int)$components[1] : 0);
-        $this->setComponent('minor', isset($components[2]) ? (int)$components[2] : 0);
-        $this->setComponent('patch', isset($components[3]) ? (int)$components[3] : 0);
-        $this->setComponent('pre-release', isset($components[4]) ? (string)$components[4] : '');
-        $this->setComponent('build', isset($components[5]) ? (string)$components[5] : '');
-
-        $version = $this->getVersionFromComponents();
-
-        return $version;
-    }
-
-    /**
      * Get the version that is used.
      *
      * @since 0.1.0
@@ -127,31 +82,6 @@ class SemanticVersion
     public function getVersion()
     {
         return (string)isset($this->version) ? $this->version : '0.0.0';
-    }
-
-    /**
-     * Build and return a versin from the separated components.
-     *
-     * @since 0.1.0
-     *
-     * @return string
-     */
-    protected function getVersionFromComponents()
-    {
-
-        $pre_release = $this->getPreRelease() ? '-' . $this->getPreRelease() : '';
-        $build       = $this->getBuild() ? '+' . $this->getBuild() : '';
-
-        $version = sprintf(
-            '%1$s.%2$s.%3$s%4$s%5$s',
-            $this->getMajor(),
-            $this->getMinor(),
-            $this->getPatch(),
-            $pre_release,
-            $build
-        );
-
-        return $version;
     }
 
     /**
@@ -217,12 +147,97 @@ class SemanticVersion
     }
 
     /**
+     * Get a string representation of the object.
+     *
+     * @since 0.2.0
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string)$this->getVersion();
+    }
+
+    /**
+     * Validate the version and assert it is in SemVer format.
+     *
+     * @since 0.1.0
+     *
+     * @param string $version The version to validate.
+     * @param bool   $partial Optional. Whether to accept a partial version
+     *                        number. If true, the missing components will
+     *                        default to `0` instead of throwing an exception.
+     *
+     * @return string
+     * @throws RuntimeException When the version fails to validate.
+     */
+    protected function validate($version, $partial = false)
+    {
+
+        $version = trim($version);
+        $pattern = self::VERSION_PATTERN;
+
+        $components = array();
+        $result     = preg_match($pattern, $version, $components);
+
+        if ( ! $result) {
+            throw new RuntimeException(sprintf(
+                'Failed to validate version "%1$s".',
+                (string)$version
+            ));
+        }
+
+        if ( ! $partial && ( ! isset($components[2]) || ! isset($components[3]))) {
+            throw new RuntimeException(sprintf(
+                'Could not accept partial version "%1$s", requested full versions only.',
+                (string)$version
+            ));
+        }
+
+        $this->setComponent('major', isset($components[1]) ? (int)$components[1] : 0);
+        $this->setComponent('minor', isset($components[2]) ? (int)$components[2] : 0);
+        $this->setComponent('patch', isset($components[3]) ? (int)$components[3] : 0);
+        $this->setComponent('pre-release', isset($components[4]) ? (string)$components[4] : '');
+        $this->setComponent('build', isset($components[5]) ? (string)$components[5] : '');
+
+        $version = $this->getVersionFromComponents();
+
+        return $version;
+    }
+
+    /**
+     * Build and return a versin from the separated components.
+     *
+     * @since 0.1.0
+     *
+     * @return string
+     */
+    protected function getVersionFromComponents()
+    {
+
+        $pre_release = $this->getPreRelease() ? '-' . $this->getPreRelease() : '';
+        $build       = $this->getBuild() ? '+' . $this->getBuild() : '';
+
+        $version = sprintf(
+            '%1$s.%2$s.%3$s%4$s%5$s',
+            $this->getMajor(),
+            $this->getMinor(),
+            $this->getPatch(),
+            $pre_release,
+            $build
+        );
+
+        return $version;
+    }
+
+    /**
      * Get a component of the version.
      *
      * @since 0.1.0
      *
      * @param string $level What level of component to get. Possible values:
      *                      'major', 'minor', 'patch'
+     *
      * @return int The requested version component. null if not defined.
      */
     protected function getComponent($level)
@@ -244,17 +259,5 @@ class SemanticVersion
     protected function setComponent($level, $version)
     {
         $this->components[$level] = $version;
-    }
-
-    /**
-     * Get a string representation of the object.
-     *
-     * @since 0.2.0
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return (string)$this->getVersion();
     }
 }

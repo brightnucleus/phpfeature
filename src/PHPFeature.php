@@ -57,6 +57,7 @@ class PHPFeature implements FeatureInterface
      * @param ConfigInterface|null            $config      Configuration that
      *                                                     contains the known
      *                                                     features.
+     *
      * @throws RuntimeException If the PHP version could not be validated.
      */
     public function __construct($phpVersion = null, ConfigInterface $config = null)
@@ -93,7 +94,8 @@ class PHPFeature implements FeatureInterface
      *
      * @since 0.1.0
      *
-     * @param string|array $features    What features to check the support of.
+     * @param string|array $features What features to check the support of.
+     *
      * @return bool
      * @throws InvalidArgumentException If the wrong type of argument is passed
      *                                  in.
@@ -134,7 +136,8 @@ class PHPFeature implements FeatureInterface
      *
      * @since 0.2.0
      *
-     * @param string|array $features    What features to check the support of.
+     * @param string|array $features What features to check the support of.
+     *
      * @return SemanticVersion|false
      * @throws InvalidArgumentException If the wrong type of argument is passed
      *                                  in.
@@ -173,6 +176,7 @@ class PHPFeature implements FeatureInterface
      * @param string      $feature         The feature to check.
      * @param string|null $minimumRequired Optional. Minimum required version that
      *                                     supports all features.
+     *
      * @return bool
      * @throws RuntimeException If the requirement could not be parsed.
      */
@@ -204,6 +208,7 @@ class PHPFeature implements FeatureInterface
      *                                     operator and a version milestone.
      * @param string|null $minimumRequired Optional. Minimum required version that
      *                                     supports all features.
+     *
      * @return bool
      * @throws RuntimeException If the requirement could not be parsed.
      */
@@ -249,6 +254,7 @@ class PHPFeature implements FeatureInterface
      *                          Possible values: '<=', 'lt', '<', 'le', '>=',
      *                          'gt', '>', 'ge', '=', '==', 'eq', '!=', '<>',
      *                          'ne'
+     *
      * @return string
      */
     protected function getRequiredVersion($milestone, $operator)
