@@ -38,20 +38,20 @@ class Config extends ArrayObject implements ConfigInterface
      *
      * @since  0.1.0
      *
-     * @param  string $function  The function that was called on this object.
-     * @param  mixed  $arguments The arguments that were used for the function
+     * @param  string $method  The method that was called on this object.
+     * @param  mixed  $arguments The arguments that were used for the method
      *                           call.
      *
      * @return mixed
      * @throws BadMethodCallException
      */
-    public function __call($function, $arguments)
+    public function __call($method, $arguments)
     {
-        if ( ! is_callable($function) || substr($function, 0, 6) !== 'array_') {
-            throw new BadMethodCallException(__CLASS__ . '->' . $function);
+        if ( ! is_callable($method) || substr($method, 0, 6) !== 'array_') {
+            throw new BadMethodCallException(__CLASS__ . '->' . $method);
         }
 
-        return call_user_func_array($function, array_merge(array($this->getArrayCopy()), $arguments));
+        return call_user_func_array($method, array_merge(array($this->getArrayCopy()), $arguments));
     }
 
     /**
