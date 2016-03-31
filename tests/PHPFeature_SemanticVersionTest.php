@@ -18,7 +18,7 @@ use PHPFeature_SemanticVersion as SemanticVersion;
  *
  * @author Alain Schlesser <alain.schlesser@gmail.com>
  */
-class SemanticVersionTest extends PHPUnit_Framework_TestCase
+class PHPFeature_SemanticVersionTest extends PHPUnit_Framework_TestCase
 {
 
     /**

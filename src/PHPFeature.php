@@ -325,7 +325,10 @@ class PHPFeature implements FeatureInterface
      */
     protected function getLesserThanVersion($milestone)
     {
-        $data = $this->releases->getAll();
+        if (version_compare($this->version->getVersion(), $milestone, '<')) {
+            return $this->version->getVersion();
+        }
+        $data = array_reverse($this->releases->getAll());
         foreach ($data as $version => $date) {
             if (version_compare($version, $milestone, '<')) {
                 return $version;
@@ -350,7 +353,14 @@ class PHPFeature implements FeatureInterface
             return $milestone;
         }
 
-        return $this->getGreaterThanVersion($milestone);
+        $data = $this->releases->getAll();
+        foreach ($data as $version => $date) {
+            if (version_compare($version, $milestone, '>=')) {
+                return $version;
+            }
+        }
+
+        throw new RuntimeException('Could not satisfy version requirements.');
     }
 
     /**
@@ -364,10 +374,17 @@ class PHPFeature implements FeatureInterface
      */
     protected function getLesserEqualVersion($milestone)
     {
-        if ($this->releases->exists($milestone)) {
-            return $milestone;
+        if (version_compare($this->version->getVersion(), $milestone, '<=')) {
+            return $this->version->getVersion();
         }
 
-        return $this->getLesserThanVersion($milestone);
+        $data = array_reverse($this->releases->getAll());
+        foreach ($data as $version => $date) {
+            if (version_compare($version, $milestone, '<=')) {
+                return $version;
+            }
+        }
+
+        throw new RuntimeException('Could not satisfy version requirements.');
     }
 }
