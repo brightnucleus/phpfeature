@@ -38,7 +38,7 @@ class Config extends ArrayObject implements ConfigInterface
      *
      * @since  0.1.0
      *
-     * @param  string $method  The method that was called on this object.
+     * @param  string $method    The method that was called on this object.
      * @param  mixed  $arguments The arguments that were used for the method
      *                           call.
      *
@@ -47,7 +47,7 @@ class Config extends ArrayObject implements ConfigInterface
      */
     public function __call($method, $arguments)
     {
-        if ( ! is_callable($method) || substr($method, 0, 6) !== 'array_') {
+        if ( ! is_callable($method) || 0 !== strpos($method, 'array')) {
             throw new BadMethodCallException(__CLASS__ . '->' . $method);
         }
 
