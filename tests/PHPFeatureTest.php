@@ -2,7 +2,7 @@
 /**
  * PHPFeatureTest Class
  *
- * @package   phpfeature
+ * @package   brightnucleus/phpfeature
  * @author    Alain Schlesser <alain.schlesser@gmail.com>
  * @license   MIT
  * @link      http://www.brightnucleus.com/
