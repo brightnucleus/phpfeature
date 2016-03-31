@@ -51,7 +51,7 @@ class Config extends ArrayObject implements ConfigInterface
             throw new BadMethodCallException(__CLASS__ . '->' . $method);
         }
 
-        return call_user_func_array($method, array_merge(array($this->getArrayCopy()), $arguments));
+        return call_user_func_array($method, array_merge($this->getArrayCopy(), $arguments));
     }
 
     /**
