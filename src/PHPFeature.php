@@ -67,7 +67,7 @@ class PHPFeature implements FeatureInterface
 
         // TODO: Better way to bootstrap this while still allowing DI?
         if ( ! $config) {
-            $config = new Config(include(__DIR__ . '/../config/known_features.php'));
+            $config = new Config(include(dirname(__FILE__) . '/../config/known_features.php'));
         }
 
         $this->config = $config;
