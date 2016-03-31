@@ -9,6 +9,8 @@
  * @copyright 2016 Alain Schlesser, Bright Nucleus
  */
 
+use PHPFeature_SemanticVersion as SemanticVersion;
+
 /**
  * Class PHPFeatureTest
  *

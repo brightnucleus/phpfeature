@@ -1,6 +1,6 @@
 <?php
 /**
- * SemanticVersion Class
+ * PHPFeature_SemanticVersion Class.
  *
  * @package   brightnucleus/phpfeature
  * @author    Alain Schlesser <alain.schlesser@gmail.com>
@@ -10,13 +10,15 @@
  */
 
 /**
- * Class SemanticVersion
+ * Class PHPFeature_SemanticVersion.
+ *
+ * This class implements the semantic versioning logic and enables comparison between version strings.
  *
  * @since  0.1.0
  *
  * @author Alain Schlesser <alain.schlesser@gmail.com>
  */
-class SemanticVersion
+class PHPFeature_SemanticVersion
 {
 
     /**
@@ -47,16 +49,13 @@ class SemanticVersion
     protected $components;
 
     /**
-     * Instantiate a Version object.
+     * Instantiate a PHPFeature_SemanticVersion object.
      *
      * @since 0.1.0
      *
-     * @param string|null $version Optional. The version to use. Defaults to
-     *                             the current PHP interpreter's version.
-     * @param bool        $partial Optional. Whether to accept a partial
-     *                             version number. If true, the missing
-     *                             components will default to `0` instead of
-     *                             throwing an exception.
+     * @param string|null $version Optional. The version to use. Defaults to the current PHP interpreter's version.
+     * @param bool        $partial Optional. Whether to accept a partial version number. If true, the missing
+     *                             components will default to `0` instead of throwing an exception.
      *
      * @throws RuntimeException When the version fails to validate.
      */
@@ -125,8 +124,7 @@ class SemanticVersion
      *
      * @since 0.1.0
      *
-     * @return string The patch version that is used. Empty string if not
-     *                defined.
+     * @return string The patch version that is used. Empty string if not defined.
      */
     public function getPreRelease()
     {
@@ -138,8 +136,7 @@ class SemanticVersion
      *
      * @since 0.1.0
      *
-     * @return string The build metadata for the version that is used. Empty
-     *                string if not defined.
+     * @return string The build metadata for the version that is used. Empty string if not defined.
      */
     public function getBuild()
     {
@@ -151,7 +148,7 @@ class SemanticVersion
      *
      * @since 0.2.0
      *
-     * @return string
+     * @return string String representation of the version.
      */
     public function __toString()
     {
@@ -164,11 +161,10 @@ class SemanticVersion
      * @since 0.1.0
      *
      * @param string $version The version to validate.
-     * @param bool   $partial Optional. Whether to accept a partial version
-     *                        number. If true, the missing components will
-     *                        default to `0` instead of throwing an exception.
+     * @param bool   $partial Optional. Whether to accept a partial version number. If true, the missing components
+     *                        will default to `0` instead of throwing an exception.
      *
-     * @return string
+     * @return string Validated version string.
      * @throws RuntimeException When the version fails to validate.
      */
     protected function validate($version, $partial = false)
@@ -206,11 +202,11 @@ class SemanticVersion
     }
 
     /**
-     * Build and return a versin from the separated components.
+     * Build and return a version from the separated components.
      *
      * @since 0.1.0
      *
-     * @return string
+     * @return string String representation of the component's version.
      */
     protected function getVersionFromComponents()
     {
@@ -235,8 +231,8 @@ class SemanticVersion
      *
      * @since 0.1.0
      *
-     * @param string $level What level of component to get. Possible values:
-     *                      'major', 'minor', 'patch'
+     * @param string $level What level of component to get.
+     *                      Possible values: 'major', 'minor', 'patch'
      *
      * @return int The requested version component. null if not defined.
      */
@@ -252,8 +248,8 @@ class SemanticVersion
      *
      * @since 0.1.0
      *
-     * @param string $level   What level of component to set. Possible values:
-     *                        'major', 'minor', 'patch'
+     * @param string $level   What level of component to set.
+     *                        Possible values: 'major', 'minor', 'patch'
      * @param int    $version What version to set that component to.
      */
     protected function setComponent($level, $version)

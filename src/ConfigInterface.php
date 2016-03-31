@@ -1,6 +1,6 @@
 <?php
 /**
- * ConfigInterface Interface.
+ * PHPFeature_ConfigInterface Interface.
  *
  * @package   brightnucleus/phpfeature
  * @author    Alain Schlesser <alain.schlesser@gmail.com>
@@ -10,13 +10,16 @@
  */
 
 /**
- * Interface ConfigInterface
+ * Interface PHPFeature_ConfigInterface.
+ *
+ * Configuration Interface to use. The library includes a generic implementation of this interface named
+ * `PHPFeature_Config`.
  *
  * @since  0.1.0
  *
  * @author Alain Schlesser <alain.schlesser@gmail.com>
  */
-interface ConfigInterface
+interface PHPFeature_ConfigInterface
 {
 
     /**
@@ -39,7 +42,7 @@ interface ConfigInterface
      *
      * @param string $key The key to check the existence for.
      *
-     * @return bool
+     * @return bool Whether the specified key exists.
      */
     public function hasKey($key);
 
@@ -50,7 +53,7 @@ interface ConfigInterface
      *
      * @param string $key The key to get the value for.
      *
-     * @return mixed
+     * @return mixed Value of the requested key.
      */
     public function getKey($key);
 
@@ -59,7 +62,7 @@ interface ConfigInterface
      *
      * @since 0.1.0
      *
-     * @return mixed
+     * @return array Array of config keys.
      */
     public function getKeys();
 }

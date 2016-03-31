@@ -1,6 +1,6 @@
 <?php
 /**
- * PHPFeature Class
+ * PHPFeature Class.
  *
  * @package   brightnucleus/phpfeature
  * @author    Alain Schlesser <alain.schlesser@gmail.com>
@@ -9,8 +9,14 @@
  * @copyright 2016 Alain Schlesser, Bright Nucleus
  */
 
+use PHPFeature_Config as Config;
+use PHPFeature_ConfigInterface as ConfigInterface;
+use PHPFeature_SemanticVersion as SemanticVersion;
+
 /**
- * Class PHPFeature
+ * Class PHPFeature.
+ *
+ * The main PHP Feature implementation of the `FeatureInterface`.
  *
  * @since  0.1.0
  *
@@ -51,12 +57,8 @@ class PHPFeature implements FeatureInterface
      *
      * @since 0.1.0
      *
-     * @param SemanticVersion|string|int|null $phpVersion  Version of PHP to
-     *                                                     check the features
-     *                                                     for.
-     * @param ConfigInterface|null            $config      Configuration that
-     *                                                     contains the known
-     *                                                     features.
+     * @param SemanticVersion|string|int|null $phpVersion Version of PHP to check the features for.
+     * @param ConfigInterface|null            $config     Configuration that contains the known features.
      *
      * @throws RuntimeException If the PHP version could not be validated.
      */
@@ -88,17 +90,15 @@ class PHPFeature implements FeatureInterface
     /**
      * Check whether a feature or a collection of features is supported.
      *
-     * Accepts either a string or an array of strings. Returns true if all the
-     * passed-in features are supported, or false if at least one of them is
-     * not.
+     * Accepts either a string or an array of strings. Returns true if all the passed-in features are supported, or
+     * false if at least one of them is not.
      *
      * @since 0.1.0
      *
      * @param string|array $features What features to check the support of.
      *
-     * @return bool
-     * @throws InvalidArgumentException If the wrong type of argument is passed
-     *                                  in.
+     * @return bool Whether the set of features as a whole is supported.
+     * @throws InvalidArgumentException If the wrong type of argument is passed in.
      * @throws RuntimeException         If a requirement could not be parsed.
      */
     public function isSupported($features)
@@ -126,21 +126,19 @@ class PHPFeature implements FeatureInterface
     }
 
     /**
-     * Get the minimum required version that supports all of the requested
-     * features.
+     * Get the minimum required version that supports all of the requested features.
      *
-     * Accepts either a string or an array of strings. Returns a
-     * SemanticVersion object for the version number that is known to support
-     * all the passed-in features, or false if at least one of
-     * them is not supported by any known version.
+     * Accepts either a string or an array of strings. Returns a SemanticVersion object for the version number that is
+     * known to support all the passed-in features, or false if at least one of them is not supported by any known
+     * version.
      *
      * @since 0.2.0
      *
      * @param string|array $features What features to check the support of.
      *
-     * @return SemanticVersion|false
-     * @throws InvalidArgumentException If the wrong type of argument is passed
-     *                                  in.
+     * @return SemanticVersion|false SemanticVersion object for the version number that is known to support all the
+     *                               passed-in features, false if none.
+     * @throws InvalidArgumentException If the wrong type of argument is passed in.
      * @throws RuntimeException         If a requirement could not be parsed.
      */
     public function getMinimumRequired($features)
@@ -174,10 +172,9 @@ class PHPFeature implements FeatureInterface
      * @since 0.1.0
      *
      * @param string      $feature         The feature to check.
-     * @param string|null $minimumRequired Optional. Minimum required version that
-     *                                     supports all features.
+     * @param string|null $minimumRequired Optional. Minimum required version that supports all features.
      *
-     * @return bool
+     * @return bool Whether the requested feature is supported.
      * @throws RuntimeException If the requirement could not be parsed.
      */
     protected function checkSupport($feature, &$minimumRequired = null)
@@ -204,12 +201,10 @@ class PHPFeature implements FeatureInterface
      *
      * @since 0.1.0
      *
-     * @param string      $requirement     A requirement that is composed of an
-     *                                     operator and a version milestone.
-     * @param string|null $minimumRequired Optional. Minimum required version that
-     *                                     supports all features.
+     * @param string      $requirement     A requirement that is composed of an operator and a version milestone.
+     * @param string|null $minimumRequired Optional. Minimum required version that supports all features.
      *
-     * @return bool
+     * @return bool Whether the requirement is met.
      * @throws RuntimeException If the requirement could not be parsed.
      */
     protected function checkRequirement($requirement, &$minimumRequired = null)
@@ -248,14 +243,12 @@ class PHPFeature implements FeatureInterface
      *
      * @since 0.2.0
      *
-     * @param string $milestone A version milestone that is used to define the
-     *                          requirement.
+     * @param string $milestone A version milestone that is used to define the requirement.
      * @param string $operator  An operator that gets applied to the milestone.
-     *                          Possible values: '<=', 'lt', '<', 'le', '>=',
-     *                          'gt', '>', 'ge', '=', '==', 'eq', '!=', '<>',
-     *                          'ne'
+     *                          Possible values: '<=', 'lt', '<', 'le', '>=', 'gt', '>', 'ge', '=', '==', 'eq', '!=',
+     *                          '<>', 'ne'
      *
-     * @return string
+     * @return string Version string that meets a single requirement.
      */
     protected function getRequiredVersion($milestone, $operator)
     {

@@ -1,6 +1,6 @@
 <?php
 /**
- * Config Class.
+ * PHPFeature_Config Class.
  *
  * @package   brightnucleus/phpfeature
  * @author    Alain Schlesser <alain.schlesser@gmail.com>
@@ -9,18 +9,22 @@
  * @copyright 2016 Alain Schlesser, Bright Nucleus
  */
 
+use PHPFeature_ConfigInterface as ConfigInterface;
+
 /**
- * Config loader used to load config PHP files as objects.
+ * Class PHPFeature_Config.
+ *
+ * Config loader used to load config PHP files as objects. Implements `PHPFeature_ConfigInterface`.
  *
  * @since  0.1.0
  *
  * @author Alain Schlesser <alain.schlesser@gmail.com>
  */
-class Config extends ArrayObject implements ConfigInterface
+class PHPFeature_Config extends ArrayObject implements ConfigInterface
 {
 
     /**
-     * Instantiate the Config object.
+     * Instantiate the PHPFeature_Config object.
      *
      * @since 0.1.0
      *
@@ -34,7 +38,7 @@ class Config extends ArrayObject implements ConfigInterface
 
     /**
      * Magic method that enables the use of normal array_* functions on the
-     * Config object.
+     * PHPFeature_Config object.
      *
      * @since  0.1.0
      *
@@ -42,7 +46,7 @@ class Config extends ArrayObject implements ConfigInterface
      * @param  mixed  $arguments The arguments that were used for the method
      *                           call.
      *
-     * @return mixed
+     * @return mixed Result of the called method.
      * @throws BadMethodCallException
      */
     public function __call($method, $arguments)
@@ -61,7 +65,7 @@ class Config extends ArrayObject implements ConfigInterface
      *
      * @param string $key The key to check the existence for.
      *
-     * @return bool
+     * @return bool Whether the specified key exists.
      */
     public function hasKey($key)
     {
@@ -75,7 +79,7 @@ class Config extends ArrayObject implements ConfigInterface
      *
      * @param string $key The key to get the value for.
      *
-     * @return mixed
+     * @return mixed Value of the requested key.
      */
     public function getKey($key)
     {
@@ -87,7 +91,7 @@ class Config extends ArrayObject implements ConfigInterface
      *
      * @since 0.1.0
      *
-     * @return mixed
+     * @return array Array of config keys.
      */
     public function getKeys()
     {
