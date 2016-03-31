@@ -17,11 +17,18 @@ You can read more background information here: http://www.alainschlesser.com/php
 
 ## Table Of Contents
 
+* [Requirements](#requirements)
 * [Installation](#installation)
 * [Basic Usage](#basic-usage)
 * [Known Issues](#known-issues)
 * [Contributing](#contributing)
 * [License](#license)
+
+## Requirements
+
+To develop using the library, you will need PHP 5.3.2+, as it uses Composer to manage its dependencies.
+
+However, the runtime code only requires PHP 5.2+, as one of the goals was to make it useful for WordPress development.
 
 ## Installation
 
@@ -77,9 +84,7 @@ if ( ! $php->is_supported( $features ) ) {
 
 * The list of features is not yet exhaustive. There should also be some guidelines to know how these are named.
 
-* The algorithm behind `get_minimum_required()` is still missing, it only fetches bare version. For a requirement like '>5.4.2', this will return incorrect values.
-
-* The required PHP version to use the library is currently at v5.3.2, because of Composer. This should be lowered to 5.2 at least, so that WordPress projects can reliably use the library.
+* The algorithm behind `get_minimum_required()` is still very basic, and `NotEqual` is not implemented.
 
 ## Contributing
 
