@@ -2,17 +2,28 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.2.5] - 2016-03-31
+### Added
+- Add `xrstf/composer-php52` to allow library to be used in PHP5.2 environments.
+
+### Changed
+- Change License to MIT.
+
 ## [0.2.4] - 2016-02-10
+### Changed
 - Change code style to PSR-2.
 
 ## [0.2.3] - 2016-01-14
+### Fixed
 - Small documentation tweaks.
 
 ## [0.2.2] - 2016-01-14
+### Added
 - Add link to blog post with background information to README.md
 - Add better usage information to README.md
 
 ## [0.2.1] - 2016-01-14
+### Removed
 - Remove superfluous issue from README.md
 
 ## [0.2.0] - 2016-01-14
@@ -25,6 +36,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Initial release to GitHub.
 
+[0.2.5]: https://github.com/brightnucleus/phpfeature/compare/v0.2.4...v0.2.5
 [0.2.4]: https://github.com/brightnucleus/phpfeature/compare/v0.2.3...v0.2.4
 [0.2.3]: https://github.com/brightnucleus/phpfeature/compare/v0.2.2...v0.2.3
 [0.2.2]: https://github.com/brightnucleus/phpfeature/compare/v0.2.1...v0.2.2

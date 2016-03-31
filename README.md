@@ -70,3 +70,7 @@ if ( ! $php->is_supported( $features ) ) {
 * The algorithm behind `get_minimum_required()` is still missing, it only fetches bare version. For a requirement like '>5.4.2', this will return incorrect values.
 
 * The required PHP version to use the library is currently at v5.3.2, because of Composer. This should be lowered to 5.2 at least, so that WordPress projects can reliably use the library.
+
+## License
+
+This code is released under the MIT license. For the full copyright and license information, please view the LICENSE file distributed with this source code.
