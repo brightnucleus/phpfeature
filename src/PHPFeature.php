@@ -73,7 +73,7 @@ class PHPFeature implements FeatureInterface
             $phpVersion = phpversion();
         }
 
-        if (is_integer($phpVersion)) {
+        if (is_int($phpVersion)) {
             $phpVersion = (string)$phpVersion;
         }
 
