@@ -183,11 +183,7 @@ class PHPFeature implements FeatureInterface
             return false;
         }
 
-        $requirements = $this->config->getKey($feature);
-
-        if ( ! is_array($requirements)) {
-            $requirements = array($requirements);
-        }
+        $requirements = (array)$this->config->getKey($feature);
 
         $isSupported = true;
 
