@@ -15,7 +15,15 @@ PHPFeature is a first draft of a PHP Feature Detection Library similar to what M
 
 You can read more background information here: http://www.alainschlesser.com/php-feature/
 
-## Basic Usage
+## Table Of Contents
+
+* [Installation](#installation)
+* [Basic Usage](#basic-usage)
+* [Known Issues](#known-issues)
+* [Contributing](#contributing)
+* [License](#license)
+
+## Installation
 
 To include the library in your project, you can use Composer:
 
@@ -24,6 +32,8 @@ composer require brightnucleus/phpfeature
 ```
 
 Alternatively, you can copy the classes inside of your application and make sure that your application can find them.
+
+## Basic Usage
 
 Usage is pretty simple, it only comes with two methods so far.
 
@@ -70,6 +80,10 @@ if ( ! $php->is_supported( $features ) ) {
 * The algorithm behind `get_minimum_required()` is still missing, it only fetches bare version. For a requirement like '>5.4.2', this will return incorrect values.
 
 * The required PHP version to use the library is currently at v5.3.2, because of Composer. This should be lowered to 5.2 at least, so that WordPress projects can reliably use the library.
+
+## Contributing
+
+All feedback / bug reports / pull requests are welcome.
 
 ## License
 
