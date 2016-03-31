@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1b4577ce3a9be9d948b9a923e1e30bbd",
-    "content-hash": "3fdd67a8974b0538d2129ee400864d9c",
+    "hash": "c8a30e55ecea2c20b8f94d00f191f4bc",
+    "content-hash": "7d34eb87b64c638824fdaacaa49478f0",
     "packages": [
         {
             "name": "brightnucleus/config-52",
@@ -45,6 +45,51 @@
             ],
             "description": "Minimal, reusable Config component (without namespaces)",
             "time": "2016-03-31 10:29:33"
+        },
+        {
+            "name": "brightnucleus/php-releases",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/brightnucleus/php-releases.git",
+                "reference": "e49a749e10ddfb4f0029644c918970cad5b24fd6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/brightnucleus/php-releases/zipball/e49a749e10ddfb4f0029644c918970cad5b24fd6",
+                "reference": "e49a749e10ddfb4f0029644c918970cad5b24fd6",
+                "shasum": ""
+            },
+            "require": {
+                "brightnucleus/config-52": "^0.1",
+                "composer-plugin-api": "^1",
+                "php": ">=5.2",
+                "xrstf/composer-php52": "^1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "PHPReleases_Plugin"
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alain Schlesser",
+                    "email": "alain.schlesser@gmail.com"
+                }
+            ],
+            "description": "Automatically fetch a list of PHP releases from the official PHP website.",
+            "time": "2016-03-31 16:01:18"
         },
         {
             "name": "xrstf/composer-php52",

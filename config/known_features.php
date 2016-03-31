@@ -52,6 +52,9 @@ return array(
     'generator-delegation'          => '>=7.0.0',
     'anonymous-classes'             => '>=7.0.0',
     'multiple-namespace-import'     => '>=7.0.0',
+    'pcre-8.38'                     => '>=7.0.3',
+    'http-451'                      => '>=7.0.3',
+    'libzip-1.1.2'                  => '>=7.0.5',
     'void-return-type'              => '>=7.1.0',
     'constant-visibility-modifiers' => '>=7.1.0',
 );

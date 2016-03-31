@@ -53,6 +53,15 @@ class PHPFeature implements FeatureInterface
     protected $version;
 
     /**
+     * Reference to the PHP releases.
+     *
+     * @since 0.2.4
+     *
+     * @var PHPReleases
+     */
+    protected $releases;
+
+    /**
      * Instantiate a PHPFeature object.
      *
      * @since 0.1.0
@@ -241,6 +250,8 @@ class PHPFeature implements FeatureInterface
     /**
      * Get the required version for a single requirement.
      *
+     * @todo  The entire algorithm is only an approximation. A 5.2 SemVer library is needed.
+     *
      * @since 0.2.0
      *
      * @param string $milestone A version milestone that is used to define the requirement.
@@ -249,12 +260,114 @@ class PHPFeature implements FeatureInterface
      *                          '<>', 'ne'
      *
      * @return string Version string that meets a single requirement.
+     * @throws RuntimeException If the requirement could not be satisfied.
+     * @throws RuntimeException If the NotEqual is used.
      */
     protected function getRequiredVersion($milestone, $operator)
     {
+        if (null === $this->releases) {
+            $this->releases = new PHPReleases();
+        }
 
-        // TODO: Algorithm is still missing, the `$operator` is simply ignored
-        // and the pure `$milestone` is returned.
+        switch ($operator) {
+            case '>':
+            case 'gt':
+                return $this->getGreaterThanVersion($milestone);
+            case '<':
+            case 'lt':
+                return $this->getLesserThanVersion($milestone);
+            case '>=':
+            case 'ge':
+                return $this->getGreaterEqualVersion($milestone);
+            case '<=':
+            case 'le':
+                return $this->getLesserEqualVersion($milestone);
+            case '!=':
+            case '<>':
+            case 'ne':
+                throw new RuntimeException('NotEqual operator is not implemented.');
+        }
+
         return $milestone;
+    }
+
+    /**
+     * Get a version greater than the milestone.
+     *
+     * @since 0.2.4
+     *
+     * @param string $milestone A version milestone that is used to define the requirement.
+     *
+     * @return string Version number that meets the requirement.
+     * @throws RuntimeException If the requirement could not be satisfied.
+     */
+    protected function getGreaterThanVersion($milestone)
+    {
+        $data = $this->releases->getAll();
+        foreach ($data as $version => $date) {
+            if (version_compare($version, $milestone, '>')) {
+                return $version;
+            }
+        }
+
+        throw new RuntimeException('Could not satisfy version requirements.');
+    }
+
+    /**
+     * Get a version lesser than the milestone.
+     *
+     * @since 0.2.4
+     *
+     * @param string $milestone A version milestone that is used to define the requirement.
+     *
+     * @return string Version number that meets the requirement.
+     * @throws RuntimeException If the requirement could not be satisfied.
+     */
+    protected function getLesserThanVersion($milestone)
+    {
+        $data = $this->releases->getAll();
+        foreach ($data as $version => $date) {
+            if (version_compare($version, $milestone, '<')) {
+                return $version;
+            }
+        }
+
+        throw new RuntimeException('Could not satisfy version requirements.');
+    }
+
+    /**
+     * Get a version greater or equal than the milestone.
+     *
+     * @since 0.2.4
+     *
+     * @param string $milestone A version milestone that is used to define the requirement.
+     *
+     * @return string Version number that meets the requirement.
+     */
+    protected function getGreaterEqualVersion($milestone)
+    {
+        if ($this->releases->exists($milestone)) {
+            return $milestone;
+        }
+
+        return $this->getGreaterThanVersion($milestone);
+    }
+
+    /**
+     * Get a version lesser or equal than the milestone.
+     *
+     * @since 0.2.4
+     *
+     * @param string $milestone A version milestone that is used to define the requirement.
+     *
+     * @return string Version number that meets the requirement.
+     */
+    protected function getLesserEqualVersion($milestone)
+    {
+        if ($this->releases->exists($milestone)) {
+            return $milestone;
+        }
+
+        return $this->getLesserThanVersion($milestone);
     }
 }
