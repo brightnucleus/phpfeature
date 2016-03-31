@@ -9,7 +9,7 @@
  * @copyright 2016 Alain Schlesser, Bright Nucleus
  */
 
-return [
+return array(
 	'zend-engine-2'                 => '>=5.0.0',
 	'oop'                           => '>=5.0.0',
 	'classes'                       => '>=5.0.0',
@@ -54,4 +54,4 @@ return [
 	'multiple-namespace-import'     => '>=7.0.0',
 	'void-return-type'              => '>=7.1.0',
 	'constant-visibility-modifiers' => '>=7.1.0',
-];
+);
