@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.2.7] - 2019-03-23
+### Added
+- Add features for PHP 7.1, 7.2, 7.3
+
 ## [0.2.6] - 2016-03-31
 ### Added
 - Add unit tests for minimum requirements.
@@ -51,6 +55,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Initial release to GitHub.
 
+[0.2.7]: https://github.com/brightnucleus/phpfeature/compare/v0.2.6...v0.2.7
 [0.2.6]: https://github.com/brightnucleus/phpfeature/compare/v0.2.5...v0.2.6
 [0.2.5]: https://github.com/brightnucleus/phpfeature/compare/v0.2.4...v0.2.5
 [0.2.4]: https://github.com/brightnucleus/phpfeature/compare/v0.2.3...v0.2.4
