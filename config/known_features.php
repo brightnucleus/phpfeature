@@ -20,6 +20,8 @@ return array(
     'late-static-bindings'                 => '>=5.3.0',
     'jump-labels'                          => '>=5.3.0',
     'closures'                             => '>=5.3.0',
+    'call-static'                          => '>=5.3.0',
+    'invoke'                               => '>=5.3.0',
     'php-archives'                         => '>=5.3.0',
     'phar'                                 => '>=5.3.0',
     'circular-garbage-collection'          => '>=5.3.0',
